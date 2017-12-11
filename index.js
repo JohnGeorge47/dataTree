@@ -40,57 +40,19 @@ fs.createReadStream('primaryschool.csv')
         obj1[district]=[];
 
     });
-    blockname.map(function(block){
-      average.map(function(avg){
-          for(var prop in avg){
-            if(avg[prop]==block)
-            {
-              if(arr.indexOf(block)==-1)
+    average.map(function(dist){
+        for(var prop in dist){
+          if(obj1.hasOwnProperty(prop))
+          {
+            if(obj1[prop].indexOf(dist[prop])==-1){
               {
-                arr.push(block);
-                brr.push(prop);
+                obj1[prop].push(dist[prop]);
               }
             }
           }
+        }
 
-
-      });
     });
-    var a=[];
-     for(i=0;i<arr.length;i++){
-        var obj2={};
-        obj2[brr[i]]=arr[i];
-        a.push(obj2);
-     }
+    console.log(obj1);
 
-     var obj3={};
-     var res=[];
-      a.map(function(blo){
-
-          for(var prop in blo){
-            if(obj1.hasOwnProperty(prop))
-            {
-              obj1[prop].push(blo[prop])
-            }
-          }
-
-
-      });
-
- console.log(obj1);
-
-
-
-    // average.map(function(district){
-    //     for(var dist in obj1){
-
-    //         if(district.hasOwnProperty(dist)){
-
-    //             if()
-    //         }
-
-    //     }
-
-
-    // });
   });
