@@ -3,13 +3,15 @@ var fs=require('fs')
 var obj = {
   "district_name": [],
   "block_name": [],
-  "moi":[]
+  "moi":[],
+  "cluster_name":[]
 };
 fs.createReadStream('primaryschool.csv')
   .pipe(csv()).on('data', function (data) {
     obj.district_name.push(data.district_name);
     obj.block_name.push(data.block_name);
     obj.moi.push(data.moi);
+    obj.cluster_name.push(data.cluster_name);
   })
 
   .on('end', function () {
@@ -25,8 +27,15 @@ fs.createReadStream('primaryschool.csv')
         if(blockname.indexOf(dist)==-1){
             blockname.push(dist);
         }
+    });
+    var clustername=[];
+    obj.cluster_name.map(function(clust){
 
-   });
+        if(clustername.indexOf(clust)==-1){
+            clustername.push(clust);
+        }
+
+     })
     var medium=[];
     obj.moi.map(function(med){
         if(med!=''){
@@ -44,6 +53,19 @@ fs.createReadStream('primaryschool.csv')
       total.push(n);
       return total
     }, []);
+
+ const medinst=obj.block_name.reduce((total,amount,index,array) => {
+
+        var n={};
+        n[amount]=obj.moi[index];
+        total.push(n);
+        return total;
+
+ }, []);
+  console.log(medinst);
+
+
+
 
 var blockno = obj.block_name.reduce(function (total, mo) {
       total[mo] = (total[mo] || 0) + 1;
@@ -71,17 +93,17 @@ var blockno = obj.block_name.reduce(function (total, mo) {
         }
 
     });
-    console.log(blockno);
-    for(var prop in obj1){
-        for(i=0;i<obj1[prop].length;i++){
-            var obj3={};
-            if(blockno.hasOwnProperty(obj1[prop][i]))
-            {
-                obj3[obj1[prop][i]]=blockno[obj1[prop][i]];
-                obj1[prop][i]=obj3;
-            }
-        }
-    }
-    console.log(obj1);
+    // console.log(blockno);
+    // for(var prop in obj1){
+    //     for(i=0;i<obj1[prop].length;i++){
+    //         var obj3={};
+    //         if(blockno.hasOwnProperty(obj1[prop][i]))
+    //         {
+    //             obj3[obj1[prop][i]]=blockno[obj1[prop][i]];
+    //             obj1[prop][i]=obj3;
+    //         }
+    //     }
+    // }
+    // console.log
 
   });
