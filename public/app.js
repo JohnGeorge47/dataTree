@@ -1,11 +1,43 @@
 $(document).ready(function(){
-  $('#more').click(function () {
-  if($('button span').hasClass('glyphicon-chevron-down')){
-    $('#more').html('<span class="glyphicon glyphicon-chevron-up"></span> Less Info');
-  }
-  else{
-    $('#more').html('<span class="glyphicon glyphicon-chevron-down"></span> More Info');
-    }
+    var tree=$('.tree');
+    var j=0;
+    $.ajax({
+       type: "GET",
+       url :"moi.json",
+       success:function(data)
+       {
+            console.log(data);
 
+         for(var props in data)
+         {
+            var id='district'+j;
+            tree.append("<li><span class='collapsable'>"+props+"</span><ul id='"+id+"'>"+"<ul></li>" );
+            for(i=0;i<data[props].length;i++){
+                for(var key in data[props][i])
+                {
+                    $(`#${id}`).append("<li><span class='collapsable'>"+key+"</span><ul<ul></li>");
+                }
+            }
+            j++;
+         }
+
+
+
+       },
+       dataType:"json",
+    });
+       $(".collapsable").click(function () {
+
+        $(this).parent().children().toggle();
+        $(this).toggle();
+
+    });
+
+$(".collapsable").each(function(){
+
+        $(this).parent().children().toggle();
+        $(this).toggle();
 });
+
+
 });
