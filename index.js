@@ -148,6 +148,6 @@ var blockno = obj.block_name.reduce(function (total, mo) {
       }
 
     }
-    console.log(obj1);
+
 
   });
