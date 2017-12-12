@@ -62,7 +62,7 @@ fs.createReadStream('primaryschool.csv')
         return total;
 
  }, []);
-  console.log(medinst);
+
 
 
 
@@ -93,6 +93,10 @@ var blockno = obj.block_name.reduce(function (total, mo) {
         }
 
     });
+
+    var arr=[];
+
+
     // console.log(blockno);
     // for(var prop in obj1){
     //     for(i=0;i<obj1[prop].length;i++){
@@ -105,5 +109,45 @@ var blockno = obj.block_name.reduce(function (total, mo) {
     //     }
     // }
     // console.log
+    obj4={};
+    blockname.map(function(block){
+
+            obj4[block]={};
+            medium.map(function(lang){
+
+                obj4[block][lang]=0;
+
+
+
+            });
+
+    });
+
+    medinst.map(function(block){
+        for(var blo in obj4){
+            if(block.hasOwnProperty(blo))
+                {
+                  if(obj4[blo].hasOwnProperty(block[blo]))
+                  {
+                    obj4[blo][block[blo]]=obj4[blo][block[blo]]+1;
+                  }
+                }
+
+        }
+      });
+    for(var prop in obj1){
+      for(i=0;i<obj1[prop].length;i++){
+          var obj3={};
+          if(obj4.hasOwnProperty(obj1[prop][i])){
+
+            obj3[obj1[prop][i]]=obj4[obj1[prop][i]];
+            obj1[prop][i]=obj3;
+          }
+
+
+      }
+
+    }
+    console.log(obj1);
 
   });
