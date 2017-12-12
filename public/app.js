@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+
     var tree=$('.tree');
     var j=0;
     var k=0;
@@ -7,21 +9,21 @@ $(document).ready(function(){
        url :"moi.json",
        success:function(data)
        {
-            console.log(data);
+
 
          for(var props in data)
          {
             var id='district'+j;
-            tree.append("<li>"+props+"<ul id='"+id+"'>"+"<ul></li>" );
+            tree.append("<li class='branch'>"+props+"<ul id='"+id+"'>"+"<ul></li>" );
             for(i=0;i<data[props].length;i++){
                 for(var key in data[props][i])
                 {
                     id2='newId'+k;
 
-                    $(`#${id}`).append("<li>"+key+"<ul id='"+id2+"''>"+"</ul></li>");
+                    $(`#${id}`).append("<li class='aj hide'>"+key+"<ul class='hide' id='"+id2+"''>"+"</ul></li>");
                     for(var next in data[props][i][key]){
 
-                            $(`#${id2}`).append("<li>"+next+"</li>");
+                            $(`#${id2}`).append("<li class='af'>"+next+":"+data[props][i][key][next]+"</li>");
 
                     }
                     k++;
@@ -35,14 +37,26 @@ $(document).ready(function(){
        },
        dataType:"json",
     });
-       $(".tree").click(function () {
+    //    $(".branch").click(function (e) {
 
-        $(this).parent().children().toggle();
+    //     // $(e.target).toggle();
 
+    //     console.log("dakjsjdsa");
+
+    // });
+
+     $('.tree').on('click','.branch',function(event){
+
+
+             event.stopPropagation();
+             $(this).find(".aj").toggleClass('hide');
 
     });
+      $('.tree').on('click','.aj',function(event){
 
+            event.stopPropagation();
+            $(this).children().toggleClass('hide');
 
-
+    });
 
 });
