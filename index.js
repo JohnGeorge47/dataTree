@@ -148,6 +148,8 @@ var blockno = obj.block_name.reduce(function (total, mo) {
       }
 
     }
-
+    var json = JSON.stringify(obj1);
+    var fs = require('fs');
+    fs.writeFile('moi.json', json, 'utf8');
 
   });
