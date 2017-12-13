@@ -15,3 +15,19 @@ ul{
 .sub-title{
     margin-bottom: 50px;
 }
+li.branch{
+    background-color: #A6A6A6;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 2px;
+    padding-left: 20px;
+}
+.branch.twig:before{
+    content: "\f138";
+    font-family: FontAwesome;
+}
+.branch.leaf:before{
+    content: "\f139";
+    font-family: FontAwesome;
+}
+

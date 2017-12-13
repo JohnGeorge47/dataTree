@@ -14,7 +14,7 @@ $(document).ready(function(){
          for(var props in data)
          {
             var id='district'+j;
-            tree.append("<li class='branch'>"+props+"<ul id='"+id+"'>"+"<ul></li>" );
+            tree.append("<li class='branch twig'>"+props+"<ul id='"+id+"'>"+"<ul></li>" );
             for(i=0;i<data[props].length;i++){
                 for(var key in data[props][i])
                 {
@@ -37,19 +37,15 @@ $(document).ready(function(){
        },
        dataType:"json",
     });
-    //    $(".branch").click(function (e) {
 
-    //     // $(e.target).toggle();
-
-    //     console.log("dakjsjdsa");
-
-    // });
 
      $('.tree').on('click','.branch',function(event){
 
 
              event.stopPropagation();
              $(this).find(".aj").toggleClass('hide');
+             $(this).toggleClass('twig');
+             $(this).toggleClass('leaf');
 
     });
       $('.tree').on('click','.aj',function(event){
