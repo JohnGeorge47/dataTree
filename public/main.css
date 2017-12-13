@@ -33,7 +33,7 @@ li.branch {
 }
 
 .branch.leaf:before {
-  content: "\f139";
+  content: "\f13a";
   font-family: FontAwesome;
 }
 
@@ -43,7 +43,7 @@ li.branch {
 }
 
 .aj.leaf2:before {
-  content: "\f139";
+  content: "\f13a";
   font-family: FontAwesome;
 }
 
