@@ -30,4 +30,14 @@ li.branch{
     content: "\f139";
     font-family: FontAwesome;
 }
-
+.aj.twig2:before{
+    content: "\f138";
+    font-family: FontAwesome;
+}
+.aj.leaf2:before{
+    content: "\f139";
+    font-family: FontAwesome;
+}
+/*.branch:hover{
+    background-color: #747474;
+}*/

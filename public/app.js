@@ -20,7 +20,7 @@ $(document).ready(function(){
                 {
                     id2='newId'+k;
 
-                    $(`#${id}`).append("<li class='aj hide'>"+key+"<ul class='hide' id='"+id2+"''>"+"</ul></li>");
+                    $(`#${id}`).append("<li class='aj hide twig2'>"+key+"<ul class='hide' id='"+id2+"''>"+"</ul></li>");
                     for(var next in data[props][i][key]){
 
                             $(`#${id2}`).append("<li class='af'>"+next+":"+data[props][i][key][next]+"</li>");
@@ -52,6 +52,8 @@ $(document).ready(function(){
 
             event.stopPropagation();
             $(this).children().toggleClass('hide');
+            $(this).toggleClass('twig2');
+            $(this).toggleClass('leaf2');
 
     });
 
