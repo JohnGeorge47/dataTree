@@ -1,53 +1,65 @@
-.tree{
-    font-size: 20px;
-    color: #2C2C2C;
-}
-.hide-class {
-    display: none;
+.tree {
+  font-size: 20px;
+  color: #2C2C2C;
 }
 
-ul{
-    list-style-type: none;
+.hide-class {
+  display: none;
 }
-.branch{
-    font-size: 30px;
+
+ul {
+  list-style-type: none;
 }
-.sub-title{
-    margin-bottom: 50px;
+
+.branch {
+  font-size: 30px;
 }
-li.branch{
-    background-color: #A6A6A6;
-    margin-bottom: 10px;
-    border-style: solid;
-    border-width: 2px;
-    padding-left: 20px;
+
+.sub-title {
+  margin-bottom: 50px;
 }
-.branch.twig:before{
-    content: "\f138";
-    font-family: FontAwesome;
+
+li.branch {
+  background-color: #A6A6A6;
+  margin-bottom: 10px;
+  border-style: solid;
+  border-width: 2px;
+  padding-left: 20px;
 }
-.branch.leaf:before{
-    content: "\f139";
-    font-family: FontAwesome;
+
+.branch.twig:before {
+  content: "\f138";
+  font-family: FontAwesome;
 }
-.aj.twig2:before{
-    content: "\f138";
-    font-family: FontAwesome;
+
+.branch.leaf:before {
+  content: "\f139";
+  font-family: FontAwesome;
 }
-.aj.leaf2:before{
-    content: "\f139";
-    font-family: FontAwesome;
+
+.aj.twig2:before {
+  content: "\f138";
+  font-family: FontAwesome;
 }
-.data-display{
-    position: fixed;
+
+.aj.leaf2:before {
+  content: "\f139";
+  font-family: FontAwesome;
 }
-.outer{
-    position: relative;
+
+.data-display {
+  position: fixed;
 }
-.panel{
-    background-color:  #A6A6A6;
-    height: 100px;
-    width:90%;
-    margin: auto;
-    font-size: 30px;
+
+.outer {
+  position: relative;
+}
+
+.panel {
+  background-color: #A6A6A6;
+  height: 100px;
+  width: 90%;
+  margin: auto;
+  font-size: 30px;
+  line-height: 100px;
 }
