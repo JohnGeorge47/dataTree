@@ -38,6 +38,16 @@ li.branch{
     content: "\f139";
     font-family: FontAwesome;
 }
-/*.branch:hover{
-    background-color: #747474;
-}*/
+.data-display{
+    position: fixed;
+}
+.outer{
+    position: relative;
+}
+.panel{
+    background-color:  #A6A6A6;
+    height: 100px;
+    width:90%;
+    margin: auto;
+    font-size: 30px;
+}
