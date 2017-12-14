@@ -13,6 +13,7 @@ fs.createReadStream('primaryschool.csv')
     obj.block_name.push(data.block_name);
     obj.moi.push(data.moi);
     obj.cluster_name.push(data.cluster_name);
+
   })
 
   .on('end', function () {
@@ -32,37 +33,48 @@ fs.createReadStream('primaryschool.csv')
          });
           return uniquearr;
     }
-    var districts=findunique(obj.district_name);
-    var blockname=findunique(obj.block_name);
-    var medium= findunique(obj.moi);
-    console.log(medium);
 
-    // var medium = [];
-    // obj.moi.map(function (med) {
-    //   if (med != '') {
-    //     if (medium.indexOf(med) == -1) {
-    //       medium.push(med);
-    //     }
-    //   }
-
-    // });
+      function objectfactory(arr1,arr2){
 
 
-    const average = obj.district_name.reduce((total, amount, index, array) => {
+      var factvar = arr1.reduce((total, amount, index, array) => {
       var n = {};
-      n[amount] = obj.block_name[index];
+      n[amount] = arr2[index];
       total.push(n);
       return total
     }, []);
 
-    const medinst = obj.block_name.reduce((total, amount, index, array) => {
+        return factvar
 
-      var n = {};
-      n[amount] = obj.moi[index];
-      total.push(n);
-      return total;
 
-    }, []);
+      }
+
+
+
+
+
+
+    var districts=findunique(obj.district_name);
+    var blockname=findunique(obj.block_name);
+    var medium= findunique(obj.moi);
+    var average=objectfactory(obj.district_name,obj.block_name);
+    var medinst=objectfactory(obj.block_name,obj.moi);
+    console.log(medinst);
+    // const average = obj.district_name.reduce((total, amount, index, array) => {
+    //   var n = {};
+    //   n[amount] = obj.block_name[index];
+    //   total.push(n);
+    //   return total
+    // }, []);
+
+    // const medinst = obj.block_name.reduce((total, amount, index, array) => {
+
+    //   var n = {};
+    //   n[amount] = obj.moi[index];
+    //   total.push(n);
+    //   return total;
+
+    // }, []);
 
 
 
