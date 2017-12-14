@@ -60,11 +60,6 @@ console.log(arr);
             $(this).children().toggleClass('hide');
             $(this).toggleClass('twig2');
             $(this).toggleClass('leaf2');
-            // var id = $(this).attr('id');
-            // var g=id.slice(1);
-            // console.log(g);
-            // $('.panel').empty();
-            // $('.panel').text(arr[g]);
 
     });
       $('.tree').on('click','.af',function(event){

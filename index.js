@@ -6,6 +6,7 @@ var obj = {
   "moi": [],
   "cluster_name": []
 };
+
 fs.createReadStream('primaryschool.csv')
   .pipe(csv()).on('data', function (data) {
     obj.district_name.push(data.district_name);
@@ -15,36 +16,36 @@ fs.createReadStream('primaryschool.csv')
   })
 
   .on('end', function () {
-    var districts = [];
-    obj.district_name.map(function (dist) {
-      if (districts.indexOf(dist) == -1) {
-        districts.push(dist);
-      }
 
-    });
-    var blockname = [];
-    obj.block_name.map(function (dist) {
-      if (blockname.indexOf(dist) == -1) {
-        blockname.push(dist);
-      }
-    });
-    var clustername = [];
-    obj.cluster_name.map(function (clust) {
+      function findunique(uniqueobj){
 
-      if (clustername.indexOf(clust) == -1) {
-        clustername.push(clust);
-      }
+          var uniquearr=[];
+          uniqueobj.map(function(check){
 
-    })
-    var medium = [];
-    obj.moi.map(function (med) {
-      if (med != '') {
-        if (medium.indexOf(med) == -1) {
-          medium.push(med);
+          if(check!=''){
+          if(uniquearr.indexOf(check)==-1){
+
+              uniquearr.push(check);
+          }
         }
-      }
 
-    });
+         });
+          return uniquearr;
+    }
+    var districts=findunique(obj.district_name);
+    var blockname=findunique(obj.block_name);
+    var medium= findunique(obj.moi);
+    console.log(medium);
+
+    // var medium = [];
+    // obj.moi.map(function (med) {
+    //   if (med != '') {
+    //     if (medium.indexOf(med) == -1) {
+    //       medium.push(med);
+    //     }
+    //   }
+
+    // });
 
 
     const average = obj.district_name.reduce((total, amount, index, array) => {
@@ -130,8 +131,8 @@ fs.createReadStream('primaryschool.csv')
       }
 
     }
-    var json = JSON.stringify(obj1);
-    var fs = require('fs');
-    fs.writeFile('moi.json', json, 'utf8');
+    // var json = JSON.stringify(obj1);
+    // var fs = require('fs');
+    // fs.writeFile('moi.json', json, 'utf8');
 
   });
