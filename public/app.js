@@ -2,8 +2,8 @@ $(document).ready(function(){
 
     var arr=[];
     var tree=$('.tree');
-    var j=0;
-    var k=0;
+    var idcount1=0;
+    var idcount2=0;
     var n=0;
     $.ajax({
        type: "GET",
@@ -14,13 +14,13 @@ $(document).ready(function(){
 
          for(var props in data)
          {
-            var id='district'+j;
+            var id='district'+idcount1;
             tree.append("<li class='branch twig'>"+props+"<ul id='"+id+"'>"+"<ul></li>" );
             for(i=0;i<data[props].length;i++){
                 for(var key in data[props][i])
                 {
-                    id2='newId'+k;
-                    id3='i'+k
+                    id2='newId'+idcount2;
+                    id3='i'+idcount2
 
                     $(`#${id}`).append("<li class='aj hide twig2' id='"+id3+"''>"+key+"<ul class='hide' id='"+id2+"''>"+"</ul></li>");
                     for(var next in data[props][i][key]){
@@ -32,10 +32,10 @@ $(document).ready(function(){
                             n++;
                     }
 
-                    k++;
+                    idcount2++;
                 }
             }
-            j++;
+            idcount1++;
          }
 
 

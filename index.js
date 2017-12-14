@@ -12,23 +12,26 @@ fs.createReadStream('primaryschool.csv')
     obj.district_name.push(data.district_name);
     obj.block_name.push(data.block_name);
     obj.moi.push(data.moi);
-    obj.cluster_name.push(data.cluster_name);
-
   })
 
   .on('end', function () {
 
     function findunique(uniqueobj) {
 
-      var uniquearr = [];
-      uniqueobj.map(function (check) {
 
-        if (check != '') {
-          if (uniquearr.indexOf(check) == -1) {
+      // uniqueobj.map(function (check) {
 
-            uniquearr.push(check);
-          }
-        }
+      //   if (check != '') {
+      //     if (uniquearr.indexOf(check) == -1) {
+
+      //       uniquearr.push(check);
+      //     }
+      //   }
+
+      // });
+      // return uniquearr;
+      var uniquearr=uniqueobj.filter(function(elem,i,arr){
+            return arr.indexOf(elem)==i&&elem!='';
 
       });
       return uniquearr;
@@ -51,6 +54,7 @@ fs.createReadStream('primaryschool.csv')
     var districts = findunique(obj.district_name);
     var blockname = findunique(obj.block_name);
     var medium = findunique(obj.moi);
+    console.log(medium);
     var average = objectfactory(obj.district_name, obj.block_name);
     var medinst = objectfactory(obj.block_name, obj.moi);
     var districtobj = {};
