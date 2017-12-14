@@ -18,86 +18,55 @@ fs.createReadStream('primaryschool.csv')
 
   .on('end', function () {
 
-      function findunique(uniqueobj){
+    function findunique(uniqueobj) {
 
-          var uniquearr=[];
-          uniqueobj.map(function(check){
+      var uniquearr = [];
+      uniqueobj.map(function (check) {
 
-          if(check!=''){
-          if(uniquearr.indexOf(check)==-1){
+        if (check != '') {
+          if (uniquearr.indexOf(check) == -1) {
 
-              uniquearr.push(check);
+            uniquearr.push(check);
           }
         }
 
-         });
-          return uniquearr;
+      });
+      return uniquearr;
     }
 
-      function objectfactory(arr1,arr2){
+    function objectfactory(arr1, arr2) {
 
 
       var factvar = arr1.reduce((total, amount, index, array) => {
-      var n = {};
-      n[amount] = arr2[index];
-      total.push(n);
-      return total
-    }, []);
+        var n = {};
+        n[amount] = arr2[index];
+        total.push(n);
+        return total
+      }, []);
 
-        return factvar
-
-
-      }
+      return factvar
+    }
 
 
+    var districts = findunique(obj.district_name);
+    var blockname = findunique(obj.block_name);
+    var medium = findunique(obj.moi);
+    var average = objectfactory(obj.district_name, obj.block_name);
+    var medinst = objectfactory(obj.block_name, obj.moi);
+    var districtobj = {};
 
-
-
-
-    var districts=findunique(obj.district_name);
-    var blockname=findunique(obj.block_name);
-    var medium= findunique(obj.moi);
-    var average=objectfactory(obj.district_name,obj.block_name);
-    var medinst=objectfactory(obj.block_name,obj.moi);
-    console.log(medinst);
-    // const average = obj.district_name.reduce((total, amount, index, array) => {
-    //   var n = {};
-    //   n[amount] = obj.block_name[index];
-    //   total.push(n);
-    //   return total
-    // }, []);
-
-    // const medinst = obj.block_name.reduce((total, amount, index, array) => {
-
-    //   var n = {};
-    //   n[amount] = obj.moi[index];
-    //   total.push(n);
-    //   return total;
-
-    // }, []);
-
-
-
-
-    var blockno = obj.block_name.reduce(function (total, mo) {
-      total[mo] = (total[mo] || 0) + 1;
-      return total;
-    }, {});
-
-    var arr = [];
-    var brr = [];
-    var obj1 = {};
     districts.map(function (district) {
-      obj1[district] = [];
+      districtobj[district] = [];
 
     });
+
     average.map(function (dist) {
       for (var prop in dist) {
-        if (obj1.hasOwnProperty(prop)) {
+        if (districtobj.hasOwnProperty(prop)) {
 
-          if (obj1[prop].indexOf(dist[prop]) == -1) {
+          if (districtobj[prop].indexOf(dist[prop]) == -1) {
             {
-              obj1[prop].push(dist[prop]);
+              districtobj[prop].push(dist[prop]);
             }
           }
         }
@@ -105,43 +74,35 @@ fs.createReadStream('primaryschool.csv')
 
     });
 
-    var arr = [];
-    obj4 = {};
+    moiobj = {};
     blockname.map(function (block) {
 
-      obj4[block] = {};
+      moiobj[block] = {};
       medium.map(function (lang) {
 
-        obj4[block][lang] = 0;
-
-
-
+        moiobj[block][lang] = 0;
       });
-
-    });
+   });
 
     medinst.map(function (block) {
-      for (var blo in obj4) {
+      for (var blo in moiobj) {
         if (block.hasOwnProperty(blo)) {
-          if (obj4[blo].hasOwnProperty(block[blo])) {
-            obj4[blo][block[blo]] = obj4[blo][block[blo]] + 1;
+          if (moiobj[blo].hasOwnProperty(block[blo])) {
+            moiobj[blo][block[blo]] = moiobj[blo][block[blo]] + 1;
           }
         }
 
       }
     });
-    for (var prop in obj1) {
-      for (i = 0; i < obj1[prop].length; i++) {
+    for (var prop in districtobj) {
+      for (i = 0; i < districtobj[prop].length; i++) {
         var obj3 = {};
-        if (obj4.hasOwnProperty(obj1[prop][i])) {
+        if (moiobj.hasOwnProperty(districtobj[prop][i])) {
 
-          obj3[obj1[prop][i]] = obj4[obj1[prop][i]];
-          obj1[prop][i] = obj3;
+          obj3[districtobj[prop][i]] = moiobj[districtobj[prop][i]];
+          districtobj[prop][i] = obj3;
         }
-
-
-      }
-
+     }
     }
     // var json = JSON.stringify(obj1);
     // var fs = require('fs');
