@@ -45,13 +45,35 @@ function groupBy(rows,groupId){
 
 
         },{});
-
-
-
 }
+
+ function tally(data,param){
+
+        return data.reduce((sofar,current)=>{
+            if(current[param]!=0){
+              if(sofar[current[param]]==undefined){
+                sofar[current[param]]=1;
+              }
+              else
+              {
+                sofar[current[param]]++;
+              }
+
+            }
+              return sofar
+        },{})
+      }
+
+
+
+
+
+
 
 module.exports = {
   findunique: findunique,
   objectfactory: objectfactory,
-  groupBy:groupBy
+  groupBy:groupBy,
+  tally:tally
+
 }
