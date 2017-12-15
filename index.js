@@ -11,9 +11,10 @@ fs.createReadStream('primaryschool.csv')
    .on('end', function () {
 
      const a=groupBy(rows,'district_name');
-     // Object.keys(a).forEach((key) => {
-     //  a[key] = groupBy(a[key], 'block')
-     // })
-     console.log(Object.keys(a));
+     Object.keys(a).forEach((key) => {
+      a[key] = groupBy(a[key], 'block_name');
+     });
+
+
 
 });
